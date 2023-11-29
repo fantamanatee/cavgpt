@@ -103,7 +103,6 @@ def refactor_df(data_raw):
     students = data_raw['email']
 
     # construct student_class matrix
-    SC_matrix = 
 
     
 
