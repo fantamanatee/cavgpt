@@ -19,9 +19,9 @@ export function UploadDocumentsForm() {
   
       reader.onload = (e) => {
         try {
-          const data = e.target.result;
+          const data = (e.target as FileReader).result;
           const workbook = read(data, { type: 'binary' });
-  
+
           let allCsvData = '';
   
           const promises = workbook.SheetNames.map(async (sheetName, index) => {

@@ -35,18 +35,10 @@ export default function CoursesPage() {
     5: "🤩",
   };
 
-  const initialResults = {
-    "CSCE 470": 5,
-    "CSCE 471": 4,
-    "CSCE 472": 3,
-    "CSCE 473": 2,
-    "CSCE 474": 1,
-  };
-
   const [courseRatings, setCourseRatings] = useState(initialRatings);
-  const [result, setResult] = useState(initialResults);
+  const [result, setResult] = useState({});
 
-  const handleSliderChange = (event, value) => {
+  const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
     setCourseRatings((prevState) => ({
       ...prevState,
       [value]: parseFloat(event.target.value),
@@ -54,7 +46,8 @@ export default function CoursesPage() {
   };
 
   const handleSubmit = async () => {
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    console.log(courseRatings);
+    fetch("http://fool1280.pythonanywhere.com/predict", {
       method: "POST",
       body: JSON.stringify(courseRatings),
       headers: {
@@ -63,8 +56,7 @@ export default function CoursesPage() {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
-        setResult({ "Expecting response from backend": 0 });
+        setResult(json["predicted_ratings"])
       });
   };
 
@@ -83,14 +75,14 @@ export default function CoursesPage() {
             <input
               type="range"
               className="w-[85%]"
-              value={courseRatings[course]}
+              value={courseRatings[course as keyof typeof courseRatings]}
               min={1}
               max={5}
               step={1}
               onChange={(e) => handleSliderChange(e, course)}
             />
             <div className="text-center text-2xl md:text-2x1 font-bold mt-2 ml-10">
-              {courseRatings[course]}
+              {courseRatings[course as keyof typeof courseRatings]}
             </div>
           </div>
         </div>
@@ -127,17 +119,19 @@ export default function CoursesPage() {
             </div>
           </div>
           <div>
-            {Object.keys(result).map((course, index) => (
-              <div
-                key={course}
-                className={`p-1 rounded bg-[#3f871c] w-full max-h-[85%] flex justify-center items-center my-4`}
-              >
-                <p className="text-center text-2xl md:text-2xl font-bold">
-                  {course} | Predicted Rating {result[course]}{" "}
-                  {emojis[Math.round(result[course])]}
-                </p>
-              </div>
-            ))}
+            {Object.keys(result)
+              .sort((a: string, b: string) => result[b as keyof typeof result] - result[a as keyof typeof result])
+              .map((course: string, index: number) => (
+                <div
+                  key={course}
+                  className={`p-1 rounded bg-[#3f871c] w-full max-h-[85%] flex justify-center items-center my-4`}
+                >
+                  <p className="text-center text-2xl md:text-2xl font-bold">
+                    {course} | Predicted Rating {result[course as keyof typeof result]}{" "}
+                    {emojis[Math.round(result[course as keyof typeof result] as number) as keyof typeof emojis]}
+                  </p>
+                </div>
+              ))}
           </div>
         </div>
       </div>
