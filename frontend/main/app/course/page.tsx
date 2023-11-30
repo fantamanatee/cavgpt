@@ -4,26 +4,26 @@ import { useState } from "react";
 
 export default function CoursesPage() {
   const courses = [
-    "engr102",
-    "csce121",
-    "csce181",
-    "csce221",
-    "csce222",
-    "csce312",
-    "csce313",
-    "csce314",
-    "csce315",
+    "ENGR 102",
+    "CSCE 121",
+    "CSCE 181",
+    "CSCE 221",
+    "CSCE 222",
+    "CSCE 312",
+    "CSCE 313",
+    "CSCE 314",
+    "CSCE 315",
   ];
   const initialRatings = {
-    engr102: 1,
-    csce121: 1,
-    csce181: 1,
-    csce221: 1,
-    csce222: 1,
-    csce312: 1,
-    csce313: 1,
-    csce314: 1,
-    csce315: 1,
+    "ENGR 102": 1,
+    "CSCE 121": 1,
+    "CSCE 181": 1,
+    "CSCE 221": 1,
+    "CSCE 222": 1,
+    "CSCE 312": 1,
+    "CSCE 313": 1,
+    "CSCE 314": 1,
+    "CSCE 315": 1,
   };
 
   const emojis = {
@@ -42,7 +42,7 @@ export default function CoursesPage() {
     "CSCE 473": 2,
     "CSCE 474": 1,
   };
-  
+
   const [courseRatings, setCourseRatings] = useState(initialRatings);
   const [result, setResult] = useState(initialResults);
 
@@ -133,7 +133,8 @@ export default function CoursesPage() {
                 className={`p-1 rounded bg-[#3f871c] w-full max-h-[85%] flex justify-center items-center my-4`}
               >
                 <p className="text-center text-2xl md:text-2xl font-bold">
-                  {course} | Predicted Rating {result[course]} {emojis[Math.round(result[course])]}
+                  {course} | Predicted Rating {result[course]}{" "}
+                  {emojis[Math.round(result[course])]}
                 </p>
               </div>
             ))}
