@@ -26,10 +26,23 @@ export default function CoursesPage() {
     csce315: 1,
   };
 
-  const initialResults = {
-    csce470: 5,
+  const emojis = {
+    0: "🤔",
+    1: "💀",
+    2: "😭",
+    3: "😐",
+    4: "😀",
+    5: "🤩",
   };
 
+  const initialResults = {
+    "CSCE 470": 5,
+    "CSCE 471": 4,
+    "CSCE 472": 3,
+    "CSCE 473": 2,
+    "CSCE 474": 1,
+  };
+  
   const [courseRatings, setCourseRatings] = useState(initialRatings);
   const [result, setResult] = useState(initialResults);
 
@@ -101,21 +114,26 @@ export default function CoursesPage() {
           {CourseCard}
         </div>
         <div className="p-4 md:p-8 rounded bg-[#17141c] w-full max-h-[85%] overflow-hidden flex flex-col gap-4">
-          <h2 className="text-2xl md:text-2xl">💡 Recommended Course</h2>
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              className="shrink-0 px-8 py-4 bg-[#fb442c] rounded"
-              onClick={handleSubmit}
-            >
-              <span className="w-full text-center">Get Recommendations</span>
-            </button>
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl md:text-2xl">💡 Recommended Course</h2>
+            <div>
+              <button
+                type="submit"
+                className="shrink-0 px-8 py-4 bg-[#fb442c] rounded"
+                onClick={handleSubmit}
+              >
+                <span className="w-full text-center">Get Recommendations</span>
+              </button>
+            </div>
           </div>
           <div>
-            {Object.keys(result).map((course) => (
-              <div key={course}>
-                <p className="text-center text-2xl md:text-2xl font-bold mt-2 ml-10">
-                  {course}: {result[course]}
+            {Object.keys(result).map((course, index) => (
+              <div
+                key={course}
+                className={`p-1 rounded bg-[#3f871c] w-full max-h-[85%] flex justify-center items-center my-4`}
+              >
+                <p className="text-center text-2xl md:text-2xl font-bold">
+                  {course} | Predicted Rating {result[course]} {emojis[Math.round(result[course])]}
                 </p>
               </div>
             ))}
