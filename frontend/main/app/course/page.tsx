@@ -47,7 +47,7 @@ export default function CoursesPage() {
 
   const handleSubmit = async () => {
     console.log(courseRatings);
-    fetch("http://fool1280.pythonanywhere.com/predict", {
+    fetch("https://fool1280.pythonanywhere.com/predict", {
       method: "POST",
       body: JSON.stringify(courseRatings),
       headers: {
