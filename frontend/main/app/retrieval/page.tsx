@@ -17,7 +17,7 @@ export default function AgentsPage() {
         'What can I help you with?'
       }
       emoji="🤖"
-      titleText="Bob the Document-Retrieving Robot"
+      titleText="CavGPT the Course Information Robot"
     ></ChatWindow>
   );
 }

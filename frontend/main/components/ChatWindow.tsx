@@ -10,8 +10,6 @@ import type { AgentStep } from "langchain/schema";
 
 import { ChatMessageBubble } from "@/components/ChatMessageBubble";
 import { IntermediateStep } from "./IntermediateStep";
-// import { UploadDocumentsForm } from "@/components/UploadDocumentsForm";
-// import { URLUploadButton } from './URLUploadButton';
 
 export function ChatWindow(props: {
   endpoint: string,
@@ -25,18 +23,6 @@ export function ChatWindow(props: {
   const messageContainerRef = useRef<HTMLDivElement | null>(null);
 
   const { endpoint, emptyStateComponent, placeholder, titleText = "An LLM", showIngestForm, showIntermediateStepsToggle, emoji } = props;
-
-  // const [showIntermediateSteps, setShowIntermediateSteps] = useState(false);
-  // const [intermediateStepsLoading, setIntermediateStepsLoading] = useState(false);
-  // const fileUpload = showIngestForm && <UploadDocumentsForm />;
-  // const urlUpload = showIngestForm && <URLUploadButton />;
-
-  // const intemediateStepsToggle = showIntermediateStepsToggle && (
-  //   <div>
-  //     <input type="checkbox" id="show_intermediate_steps" name="show_intermediate_steps" checked={showIntermediateSteps} onChange={(e) => setShowIntermediateSteps(e.target.checked)}></input>
-  //     <label htmlFor="show_intermediate_steps"> Show intermediate steps</label>
-  //   </div>
-  // );
 
   const [sourcesForMessages, setSourcesForMessages] = useState<Record<string, any>>({});
 
@@ -69,10 +55,7 @@ export function ChatWindow(props: {
     if (chatEndpointIsLoading) {
       return;
     }
-    // if (!showIntermediateSteps) {
       handleSubmit(e);
-    // Some extra work to show intermediate steps properly
-    // } else {
       setInput("");
       const messagesWithUserReply = messages.concat({ id: messages.length.toString(), content: input, role: "user" });
       setMessages(messagesWithUserReply);
@@ -110,9 +93,6 @@ export function ChatWindow(props: {
   return (
     
     <div className={`flex flex-col items-center p-4 md:p-8 rounded grow overflow-hidden ${(messages.length > 0 ? "border" : "")}`}>
-      {/* {fileUpload}
-      {urlUpload} */}
-
       <h2 className={`${messages.length > 0 ? "" : "hidden"} text-2xl`}>{emoji} {titleText}</h2>
       {messages.length === 0 ? emptyStateComponent : ""}
       <div
@@ -132,9 +112,6 @@ export function ChatWindow(props: {
       </div>
 
       <form onSubmit={sendMessage} className="flex w-full flex-col">
-        {/* <div className="flex">
-          {intemediateStepsToggle}
-        </div> */}
         <div className="flex w-full mt-4">
           <input
             className="grow mr-8 p-4 rounded"
