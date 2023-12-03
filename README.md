@@ -1,5 +1,6 @@
 # Cav's Course Recommender
 [Demo Link](https://cavgpt.vercel.app/)
+
 [Backend](https://fool1280.pythonanywhere.com/) is hosted on Python Anywhere.
 
 ## Frontend
