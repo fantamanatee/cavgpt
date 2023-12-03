@@ -21,24 +21,24 @@ export default function Home() {
             receive recommended courses you would enjoy 🔍✨
           </span>
         </li>
-        <li className="text-l">
+        {/* <li className="text-l">
           ❓
           <span className="ml-2">
             Don&apos;t know what the course is about? Ask our custom LLM chatbot
             🤖
           </span>
-        </li>
+        </li> */}
         <li className="text-l">
           ✨
           <span className="ml-2">
-            Made with{" "}
-            <a href="https://js.langchain.com/" target="_blank">
+            Made {" "}
+            {/* <a href="https://js.langchain.com/" target="_blank">
               LangChain.js
             </a>{" "}
             and the Vercel{" "}
             <a href="https://sdk.vercel.ai/docs" target="_blank">
               AI SDK
-            </a>{" "}
+            </a>{" "} */}
             in a{" "}
             <a href="https://nextjs.org/" target="_blank">
               Next.js

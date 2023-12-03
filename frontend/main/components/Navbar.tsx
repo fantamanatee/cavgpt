@@ -45,7 +45,7 @@ export function Navbar() {
       >
         Course Recommender
       </a>
-      <a
+      {/* <a
         className={`mr-4 ${
           pathname === "/retrieval" ? "text-white border-b" : ""
         }`}
@@ -63,7 +63,7 @@ export function Navbar() {
       </a>
         <button className="shrink-0 py-1 bg-red-500 rounded w-16" onClick={handleDelete}>
         Reset
-      </button>
+      </button> */}
     </nav>
   );
 }
